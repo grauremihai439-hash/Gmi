@@ -21,6 +21,7 @@ An independent Windows AI assistant powered by the OpenAI API. The repository co
 - a development fallback that works without an OpenAI key;
 - Windows packaging configuration for APPX/MSIX preparation.
 - Microsoft Store upgrade buttons linked to the monthly and annual add-ons.
+- server-verified Microsoft Store subscription entitlements via the collections API.
 - a Windows GitHub Actions build that produces the x64 APPX artifact.
 - a production Docker image that keeps OpenAI and Microsoft credentials on the server.
 
@@ -57,6 +58,7 @@ The root `Dockerfile` builds the API as a non-root production container. Configu
 - `APP_ORIGIN=null` for the packaged Electron client;
 - `JWT_SECRET` to a random value of 32 characters or more;
 - `OPENAI_API_KEY` in the hosting provider's secret manager;
+- `MICROSOFT_TENANT_ID`, `MICROSOFT_CLIENT_ID`, and `MICROSOFT_CLIENT_SECRET` for Store entitlement verification;
 - the approved OpenAI model names and usage limits.
 
 Production startup fails if `OPENAI_API_KEY` or a strong `JWT_SECRET` is missing. Never put the OpenAI or Microsoft client secrets in Electron, GitHub source, or the APPX package.
@@ -66,7 +68,7 @@ Production startup fails if `OPENAI_API_KEY` or a strong `JWT_SECRET` is missing
 - replace guest sessions with Microsoft Entra External ID or another verified identity provider;
 - replace the local JSON store with managed PostgreSQL;
 - deploy the API behind HTTPS and a managed secret store;
-- complete a Microsoft Entra tenant, server identity, and native Store entitlement bridge;
+- verify the Store entitlement bridge using a licensed flight/test account;
 - add abuse detection, reporting workflow, support tooling, backups, and observability;
 - obtain final privacy/terms review and personally accept the IARC declaration;
 - deploy the HTTPS API, build on Windows, upload the APPX, and run Store certification tests.

@@ -100,6 +100,15 @@ async function streamMessage(
 
 export const api = {
   me: () => request<MeResponse>("/v1/me"),
+  storeCollectionsTicket: () =>
+    request<{ serviceTicket: string; publisherUserId: string }>(
+      "/v1/store/collections-ticket",
+    ),
+  verifyStoreSubscription: (storeIdKey: string) =>
+    request<MeResponse>("/v1/store/verify", {
+      method: "POST",
+      body: JSON.stringify({ storeIdKey }),
+    }),
   conversations: () =>
     request<{ conversations: Conversation[] }>("/v1/conversations"),
   createConversation: () =>

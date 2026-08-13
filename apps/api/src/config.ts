@@ -20,6 +20,19 @@ export const config = {
   fastModel: process.env.OPENAI_FAST_MODEL ?? "gpt-5.6-luna",
   advancedModel: process.env.OPENAI_ADVANCED_MODEL ?? "gpt-5.6-terra",
   imageModel: process.env.OPENAI_IMAGE_MODEL ?? "gpt-image-2",
+  microsoftTenantId: process.env.MICROSOFT_TENANT_ID,
+  microsoftClientId: process.env.MICROSOFT_CLIENT_ID,
+  microsoftClientSecret: process.env.MICROSOFT_CLIENT_SECRET,
+  microsoftStoreParentProductId:
+    process.env.MICROSOFT_STORE_PARENT_PRODUCT_ID ?? "9NX17RBKP4HJ",
+  microsoftStoreMonthlyProductId:
+    process.env.MICROSOFT_STORE_MONTHLY_PRODUCT_ID ?? "9NCL4LXGNBPF",
+  microsoftStoreAnnualProductId:
+    process.env.MICROSOFT_STORE_ANNUAL_PRODUCT_ID ?? "9NCRCSC8WBX7",
+  microsoftStoreMonthlyOfferToken:
+    process.env.MICROSOFT_STORE_MONTHLY_OFFER_TOKEN ?? "ai_chatbot_monthly",
+  microsoftStoreAnnualOfferToken:
+    process.env.MICROSOFT_STORE_ANNUAL_OFFER_TOKEN ?? "ai_chatbot_annual",
   freeDailyMessageLimit: positiveInt(process.env.FREE_DAILY_MESSAGE_LIMIT, 5),
   monthlyMessageLimit: positiveInt(process.env.MONTHLY_MESSAGE_LIMIT, 1000),
   annualMessageLimit: positiveInt(process.env.ANNUAL_MESSAGE_LIMIT, 1000),
@@ -31,6 +44,13 @@ if (process.env.NODE_ENV === "production") {
   }
   if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32) {
     throw new Error("JWT_SECRET must contain at least 32 characters in production.");
+  }
+  if (
+    !process.env.MICROSOFT_TENANT_ID ||
+    !process.env.MICROSOFT_CLIENT_ID ||
+    !process.env.MICROSOFT_CLIENT_SECRET
+  ) {
+    throw new Error("Microsoft Store entitlement credentials are required in production.");
   }
 }
 

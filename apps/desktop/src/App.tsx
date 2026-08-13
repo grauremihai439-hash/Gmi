@@ -9,6 +9,7 @@ import {
   MessageSquarePlus,
   MoreHorizontal,
   Paperclip,
+  RefreshCw,
   Search,
   Settings,
   Sparkles,
@@ -63,6 +64,8 @@ export default function App() {
   const [me, setMe] = useState<MeResponse>();
   const [error, setError] = useState<string>();
   const [purchasingPlan, setPurchasingPlan] = useState<"monthly" | "annual">();
+  const [syncingStore, setSyncingStore] = useState(false);
+  const [storeOpened, setStoreOpened] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [attachment, setAttachment] = useState<PendingAttachment>();
@@ -75,9 +78,21 @@ export default function App() {
 
   useEffect(() => {
     Promise.all([refreshConversations(), api.me()])
-      .then(([items, profile]) => {
+      .then(async ([items, profile]) => {
         setMe(profile);
         if (items[0]) setActiveId(items[0].id);
+        if (window.microsoftStore?.getCollectionsId) {
+          try {
+            const ticket = await api.storeCollectionsTicket();
+            const storeIdKey = await window.microsoftStore.getCollectionsId(
+              ticket.serviceTicket,
+              ticket.publisherUserId,
+            );
+            setMe(await api.verifyStoreSubscription(storeIdKey));
+          } catch {
+            // Store services are unavailable in development and for sideloaded builds.
+          }
+        }
       })
       .catch((cause: Error) => setError(cause.message));
   }, [refreshConversations]);
@@ -229,10 +244,36 @@ export default function App() {
       if (!opened) {
         throw new Error("Microsoft Store purchases are available in the installed Windows app.");
       }
+      setStoreOpened(true);
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : "Could not open Microsoft Store.");
     } finally {
       setPurchasingPlan(undefined);
+    }
+  }
+
+  async function refreshStoreAccess() {
+    setError(undefined);
+    setSyncingStore(true);
+    try {
+      if (!window.microsoftStore?.getCollectionsId) {
+        throw new Error("Microsoft Store verification is available in the installed Windows app.");
+      }
+      const ticket = await api.storeCollectionsTicket();
+      const storeIdKey = await window.microsoftStore.getCollectionsId(
+        ticket.serviceTicket,
+        ticket.publisherUserId,
+      );
+      const profile = await api.verifyStoreSubscription(storeIdKey);
+      setMe(profile);
+      setStoreOpened(false);
+      if (profile.plan.id === "free") {
+        setError("No active subscription was found. Complete the purchase in Microsoft Store, then try again.");
+      }
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "Could not verify Microsoft Store access.");
+    } finally {
+      setSyncingStore(false);
     }
   }
 
@@ -422,6 +463,16 @@ export default function App() {
               </div>
             </div>
             <small className="billing-note">Purchases and recurring billing are completed and managed by Microsoft Store.</small>
+            <button
+              className="refresh-access"
+              disabled={syncingStore}
+              onClick={() => void refreshStoreAccess()}
+            >
+              <RefreshCw size={14} className={syncingStore ? "spinning" : ""} />
+              {syncingStore
+                ? "Verifying Microsoft Store…"
+                : storeOpened ? "I completed the purchase — refresh access" : "Refresh subscription access"}
+            </button>
           </section>
         </div>
       )}

@@ -6,6 +6,10 @@ import { createSessionToken, newUserId, userIdFromRequest } from "./auth.js";
 import { config, plans } from "./config.js";
 import { db, getUsage, recordUsage, type AiMode, type Conversation, type User } from "./data.js";
 import { streamAssistantResponse } from "./openai.js";
+import {
+  getCollectionsServiceTicket,
+  verifyStoreSubscription,
+} from "./microsoft-store.js";
 
 const app = Fastify({ logger: true, bodyLimit: 8 * 1024 * 1024 });
 await app.register(cors, { origin: config.origins });
@@ -59,6 +63,48 @@ app.get("/v1/me", async (request, reply) => {
 });
 
 app.get("/v1/plans", async () => ({ plans: Object.values(plans) }));
+
+app.get("/v1/store/collections-ticket", async (request, reply) => {
+  const user = requireUser(request);
+  if (!user) return reply.code(401).send({ error: "Unauthorized" });
+  try {
+    return {
+      serviceTicket: await getCollectionsServiceTicket(),
+      publisherUserId: user.id,
+    };
+  } catch (error) {
+    request.log.error(error);
+    return reply.code(503).send({ error: "Microsoft Store verification is unavailable." });
+  }
+});
+
+app.post("/v1/store/verify", async (request, reply) => {
+  const user = requireUser(request);
+  if (!user) return reply.code(401).send({ error: "Unauthorized" });
+  const parsed = z
+    .object({ storeIdKey: z.string().trim().min(100).max(20_000) })
+    .safeParse(request.body);
+  if (!parsed.success) return reply.code(400).send({ error: "Invalid Store identity key." });
+
+  try {
+    const subscription = await verifyStoreSubscription(parsed.data.storeIdKey, user.id);
+    user.subscription = subscription ?? {
+      plan: "free",
+      status: "active",
+      periodStartedAt: new Date().toISOString(),
+      periodEndsAt: "9999-12-31T23:59:59.999Z",
+    };
+    await db.write();
+    return {
+      user,
+      usage: getUsage(user.id, user.subscription.plan),
+      plan: plans[user.subscription.plan],
+    };
+  } catch (error) {
+    request.log.error(error);
+    return reply.code(503).send({ error: "Microsoft Store verification is unavailable." });
+  }
+});
 
 app.get("/v1/conversations", async (request, reply) => {
   const user = requireUser(request);
