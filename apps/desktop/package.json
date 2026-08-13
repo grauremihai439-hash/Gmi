@@ -1,0 +1,59 @@
+{
+  "name": "@aifc/desktop",
+  "private": true,
+  "version": "0.1.0",
+  "description": "AI assistant for conversations, writing, documents, and images.",
+  "author": "MIHAI ION",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on tcp:5173 && cross-env ELECTRON_RENDERER_URL=http://127.0.0.1:5173 electron .\"",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b --pretty false",
+    "package:windows": "npm run build && electron-builder --win appx --x64"
+  },
+  "dependencies": {
+    "lucide-react": "^0.542.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-markdown": "^10.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.2",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.0.0",
+    "electron": "37.10.3",
+    "electron-builder": "^26.0.12",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.3",
+    "wait-on": "^8.0.4"
+  },
+  "build": {
+    "appId": "com.aichatbotaskaigpt.desktop",
+    "productName": "AI Chatbot・Ask AI GPT",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "electronDownload": {
+      "cache": "../../work/electron-cache"
+    },
+    "win": {
+      "icon": "build/icon.ico",
+      "target": ["appx"]
+    },
+    "appx": {
+      "applicationId": "AIChatbotAskAIGPT",
+      "displayName": "AI Chatbot・Ask AI GPT",
+      "publisher": "CN=458BB997-FEE4-4E0D-ABDB-DDD57A0667AE",
+      "publisherDisplayName": "MIHAI ION",
+      "identityName": "MIHAIION.AIforChatGPT",
+      "backgroundColor": "#0b0d12"
+    }
+  }
+}
