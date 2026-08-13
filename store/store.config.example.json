@@ -1,0 +1,36 @@
+{
+  "storeProductId": "9NX17RBKP4HJ",
+  "productName": "AI Chatbot・Ask AI GPT",
+  "identityName": "MIHAIION.AIforChatGPT",
+  "publisher": "CN=458BB997-FEE4-4E0D-ABDB-DDD57A0667AE",
+  "publisherDisplayName": "MIHAI ION",
+  "packageFamilyName": "MIHAIION.AIforChatGPT_es76k9ms7kjqe",
+  "freeTier": {
+    "priceUsd": 0,
+    "messageLimit": 5,
+    "limitPeriod": "day",
+    "allowedModes": ["fast"]
+  },
+  "subscriptions": {
+    "monthly": {
+      "priceUsd": 14.99,
+      "period": "month",
+      "trialDays": 7,
+      "messageLimit": 1000,
+      "limitPeriod": "month",
+      "allowedModes": ["fast", "advanced"],
+      "productId": "ai_chatbot_monthly",
+      "storeId": "9NCL4LXGNBPF"
+    },
+    "annual": {
+      "priceUsd": 79.99,
+      "period": "year",
+      "trialDays": 0,
+      "messageLimit": 1000,
+      "limitPeriod": "month",
+      "allowedModes": ["fast", "advanced"],
+      "productId": "ai_chatbot_annual",
+      "storeId": "9NCRCSC8WBX7"
+    }
+  }
+}
