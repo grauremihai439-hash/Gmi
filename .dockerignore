@@ -1,0 +1,12 @@
+node_modules
+**/node_modules
+**/dist
+**/release
+.git
+.env
+data
+work
+privacy-site
+store
+*.log
+.DS_Store

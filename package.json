@@ -1,0 +1,21 @@
+{
+  "name": "ai-chatbot-ask-ai-gpt",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,desktop -c blue,green \"npm run dev -w @aifc/api\" \"npm run dev -w @aifc/desktop\"",
+    "build": "npm run build -w @aifc/api && npm run build -w @aifc/desktop",
+    "typecheck": "npm run typecheck -w @aifc/api && npm run typecheck -w @aifc/desktop",
+    "package:windows": "npm run package:windows -w @aifc/desktop"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
