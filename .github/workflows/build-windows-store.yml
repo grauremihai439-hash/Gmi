@@ -58,7 +58,7 @@ jobs:
       - name: Upload Store package
         uses: actions/upload-artifact@v4
         with:
-          name: ai-chatbot-ask-ai-gpt-store-x64
+          name: ai-chatbot-ask-ai-anything-store-x64
           path: apps/desktop/release/*.appx
           if-no-files-found: error
           retention-days: 30
