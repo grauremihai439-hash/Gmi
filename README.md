@@ -1,4 +1,4 @@
-# AI Chatbot・Ask AI GPT
+# AI Chatbot・Ask AI Anything
 
 An independent Windows AI assistant powered by the OpenAI API. The repository contains:
 

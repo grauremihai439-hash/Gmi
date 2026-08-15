@@ -49,7 +49,7 @@
 
 ## Release risks to resolve
 
-- The working title `AI Chatbot・Ask AI GPT` contains the term `GPT`. Reservation in Partner Center does not establish trademark permission or guarantee certification. Confirm the final title against current trademark and Store requirements before release.
+- The Store title is `AI Chatbot・Ask AI Anything`. The earlier title and the `GPT` keyword were rejected under Microsoft Store naming and search-term policies and must not be restored.
 - A product that only reproduces another chatbot may fail Microsoft's distinct-value requirement. The release version should offer a clear differentiator such as Windows workflow actions, document workspace, specialist modes, or privacy controls.
 - An individual Partner Center account may not be appropriate for a commercial subscription business. Confirm the final publisher/account type before submission.
 - The saved IARC rating is 12+ globally and varies by market (including Teen in the United States and 18+ in Russia). Recheck the questionnaire whenever shipped capabilities change.

@@ -1,4 +1,4 @@
-# Release handoff — AI Chatbot・Ask AI GPT
+# Release handoff — AI Chatbot・Ask AI Anything
 
 Updated: 14 August 2026
 
