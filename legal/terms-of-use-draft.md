@@ -2,7 +2,7 @@
 
 **Last updated:** REPLACE_DATE
 
-These terms govern use of AI Chatbot・Ask AI GPT, an independent AI application. They must be reviewed and completed for the publisher's jurisdiction before release.
+These terms govern use of AI Chatbot・Ask AI Anything, an independent AI application. They must be reviewed and completed for the publisher's jurisdiction before release.
 
 ## Service
 
@@ -10,7 +10,7 @@ The application provides AI-generated content through third-party model services
 
 ## Independent product
 
-AI Chatbot・Ask AI GPT is not an official OpenAI product and is not affiliated with or endorsed by OpenAI. Product and company names belong to their respective owners.
+AI Chatbot・Ask AI Anything is not an official OpenAI product and is not affiliated with or endorsed by OpenAI. Product and company names belong to their respective owners.
 
 ## Subscriptions
 

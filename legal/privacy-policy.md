@@ -2,7 +2,7 @@
 
 **Last updated: August 13, 2026**
 
-This Privacy Policy explains how AI Chatbot・Ask AI GPT (the "App") processes personal information. The App is an independent AI assistant published by MIHAI ION and powered by the OpenAI API. It is not affiliated with, endorsed by, or published by OpenAI.
+This Privacy Policy explains how AI Chatbot・Ask AI Anything (the "App") processes personal information. The App is an independent AI assistant published by MIHAI ION and powered by the OpenAI API. It is not affiliated with, endorsed by, or published by OpenAI.
 
 ## Information we process
 

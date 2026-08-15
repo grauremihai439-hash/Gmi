@@ -2,7 +2,7 @@
 
 The completed policy is available in `privacy-policy.md`.
 
-AI Chatbot・Ask AI GPT is an independent application that provides AI-assisted conversations. This draft must be completed with the publisher's legal name, address, contact details, hosting providers, retention periods, and production data flows before publication.
+AI Chatbot・Ask AI Anything is an independent application that provides AI-assisted conversations. This draft must be completed with the publisher's legal name, address, contact details, hosting providers, retention periods, and production data flows before publication.
 
 ## Data we process
 
