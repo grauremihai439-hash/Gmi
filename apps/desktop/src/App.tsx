@@ -282,7 +282,7 @@ export default function App() {
       <aside className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
         <div className="brand-row">
           <div className="brand-mark"><img src="/logo.png" alt="" /></div>
-          <div className="brand-copy"><strong>AI Chatbot・Ask AI GPT</strong><span>Personal assistant</span></div>
+          <div className="brand-copy"><strong>AI Chatbot・Ask AI Anything</strong><span>Personal assistant</span></div>
           <button className="icon-button close-sidebar" onClick={() => setSidebarOpen(false)} aria-label="Close sidebar"><X size={18} /></button>
         </div>
         <button className="new-chat" onClick={() => void newChat()}><MessageSquarePlus size={17} />New chat</button>
