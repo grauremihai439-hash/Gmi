@@ -1,4 +1,4 @@
-# AI Chatbot・Ask AI GPT
+# AI Chatbot・Ask AI Anything
 
 ## Short description
 
@@ -6,9 +6,9 @@ Start free with 5 daily questions. Subscribers get Fast and Advanced AI modes wi
 
 ## Description
 
-AI Chatbot・Ask AI GPT brings a focused AI workspace to Windows. Ask questions, draft and improve text, summarize or translate text, explore ideas, and keep your conversations organized in a fast desktop experience.
+AI Chatbot・Ask AI Anything brings a focused AI workspace to Windows. Ask questions, draft and improve text, summarize or translate text, explore ideas, and keep your conversations organized in a fast desktop experience.
 
-This application uses live generative AI. Responses may be inaccurate, so verify important information. AI Chatbot・Ask AI GPT is an independent application powered by the OpenAI API and is not affiliated with, endorsed by, or published by OpenAI.
+This application uses live generative AI. Responses may be inaccurate, so verify important information. AI Chatbot・Ask AI Anything is an independent application powered by the OpenAI API and is not affiliated with, endorsed by, or published by OpenAI.
 
 ### MVP features
 
